@@ -21,6 +21,7 @@ from mingus.containers import Bar
 from mingus.containers import Track
 from mingus.containers import Composition
 
+import threading
 import time
 
 """
@@ -61,6 +62,7 @@ for my_bar in l_bars:
 # Lets have a go at a tume
 l_tune = ["F", "F", "Ab", "Gb", "F","F","F","F"]
 l_note_bars = []
+l_note_bars2 = []
 
 l_note_bars.append([["F", 4], ["F", 4],["Ab", 4], ["Gb", 4]])
 l_note_bars.append([["F", 2], ["F", 2]])
@@ -76,9 +78,18 @@ l_note_bars.append([["F", 8], ["Eb", 8],["Db", 8], ["Eb", 8], ["F", 4], ["Ab", 8
 l_note_bars.append([["Gb", 4], ["Gb", 8],["Gb", 8], ["Ab", 3], ["Db", 8] ])
 l_note_bars.append([["Eb", 4], ["Eb", 8], ["Eb", 8],["F", 2]] )
 
+l_note_bars2.append([[None, 1]])
+l_note_bars2.append([["F", 4], ["F", 4],["Ab", 4], ["Gb", 4]])
+l_note_bars2.append([["F", 2], ["F", 2]])
+l_note_bars2.append([["F", 4], ["F", 4],["Ab", 4], ["Gb", 4]])
+l_note_bars2.append([["F", 8], ["Eb", 8],["F", 8], ["Gb", 8], ["F", 4], ["Ab", 8], ["Ab", 8]])
+l_note_bars2.append([["Gb", 4], ["Gb", 8],["Gb", 8], ["Ab", 3], ["Ab", 8] ])
+l_note_bars2.append([["Bb",3 ], ["Bb", 3],["Eb", 3]])
+l_note_bars2.append([["Bb", 1]])                    
+
 l_notes = []
 l_bars = []
-c = Composition()
+
 
 
 
@@ -87,7 +98,7 @@ c = Composition()
 
 t = Track()
 
-for a_bar in l_note_bars:
+for a_bar in l_note_bars2:
     b_bar = Bar()
     for a_note in a_bar:
         b_bar.place_notes(a_note[0], a_note[1])
@@ -96,9 +107,7 @@ for a_bar in l_note_bars:
     
 fluidsynth.play_Track(t, channel=1, bpm=120)
 
-fluidsynth.set_instrument(2, 12)
 
-fluidsynth.play_Track(t, channel=2, bpm=120)
     
     
 
