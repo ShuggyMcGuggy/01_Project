@@ -21,6 +21,7 @@ from mingus.containers import Bar
 from mingus.containers import Track
 from mingus.containers import Composition
 
+
 import threading
 import time
 
@@ -30,6 +31,7 @@ To load the SoundFont and initialize FluidSynth we will only have to call init.
 """
 
 #fluidsynth.init("soundfont.SF2")
+
 fluidsynth.init(r'/usr/local/Cellar/fluid-synth/2.2.3/share/fluid-synth/sf2/VintageDreamsWaves-v2.sf2')
 
 #fluidsynth.play_Note(Note("C-5"))
@@ -78,14 +80,14 @@ l_note_bars.append([["F", 8], ["Eb", 8],["Db", 8], ["Eb", 8], ["F", 4], ["Ab", 8
 l_note_bars.append([["Gb", 4], ["Gb", 8],["Gb", 8], ["Ab", 3], ["Db", 8] ])
 l_note_bars.append([["Eb", 4], ["Eb", 8], ["Eb", 8],["F", 2]] )
 
-l_note_bars2.append([[None, 1]])
-l_note_bars2.append([["F", 4], ["F", 4],["Ab", 4], ["Gb", 4]])
-l_note_bars2.append([["F", 2], ["F", 2]])
-l_note_bars2.append([["F", 4], ["F", 4],["Ab", 4], ["Gb", 4]])
-l_note_bars2.append([["F", 8], ["Eb", 8],["F", 8], ["Gb", 8], ["F", 4], ["Ab", 8], ["Ab", 8]])
-l_note_bars2.append([["Gb", 4], ["Gb", 8],["Gb", 8], ["Ab", 3], ["Ab", 8] ])
-l_note_bars2.append([["Bb",3 ], ["Bb", 3],["Eb", 3]])
-l_note_bars2.append([["Bb", 1]])                    
+l_note_bars.append([[None, 1]])
+l_note_bars.append([["F", 4], ["F", 4],["Ab", 4], ["Gb", 4]])
+l_note_bars.append([["F", 2], ["F", 2]])
+l_note_bars.append([["F", 4], ["F", 4],["Ab", 4], ["Gb", 4]])
+l_note_bars.append([["F", 8], ["Eb", 8],["F", 8], ["Gb", 8], ["F", 4], ["Ab", 8], ["Ab", 8]])
+l_note_bars.append([["Gb", 4], ["Gb", 8],["Gb", 8], ["Ab", 3], ["Ab", 8] ])
+l_note_bars.append([["Bb",3 ], ["Bb", 3],["Eb", 3]])
+l_note_bars.append([["Bb", 1]])                    
 
 l_notes = []
 l_bars = []
@@ -98,7 +100,7 @@ l_bars = []
 
 t = Track()
 
-for a_bar in l_note_bars2:
+for a_bar in l_note_bars:
     b_bar = Bar()
     for a_note in a_bar:
         b_bar.place_notes(a_note[0], a_note[1])
@@ -106,6 +108,27 @@ for a_bar in l_note_bars2:
     t.add_bar(b_bar)
     
 fluidsynth.play_Track(t, channel=1, bpm=120)
+
+#*****************************
+""" This function takes a list of [str_note, int_duration]
+and adds them into a bar
+It assumes that all bars have 4 beats and that the sum of
+the not duration in the bar does not exceed the bar length
+"""
+
+def notes_t_bars(l_notes, bar_durn = 1):
+    track = Track()
+    print(lnotes)
+    f_sum_b_durm = 0.0
+    #iternate the list and sum the duration to make sure they fit bars
+    for a_note in l_notes:
+        f_sum_b_durn = int_sum_b_durm + (1 / a_note[1])
+        print(str(f_sum_b_durn))
+    
+    #throw an error is the sum of note duration in the bar does not fit
+    return track
+    
+    
 
 
     
