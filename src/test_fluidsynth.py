@@ -85,7 +85,7 @@ l_note_bars2.append([["F", 4], ["F", 4],["Ab", 4], ["Gb", 4]])
 l_note_bars2.append([["F", 8], ["Eb", 8],["F", 8], ["Gb", 8], ["F", 4], ["Ab", 8], ["Ab", 8]])
 l_note_bars2.append([["Gb", 4], ["Gb", 8],["Gb", 8], ["Ab", 3], ["Ab", 8] ])
 l_note_bars2.append([["Bb",3 ], ["Bb", 3],["Eb", 3]])
-l_note_bars2.append([["Bb", 1]])                    
+l_note_bars2.append([["Bb-3", 1]])                    
 
 l_notes = []
 l_bars = []
